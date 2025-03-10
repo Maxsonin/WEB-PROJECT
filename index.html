@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Бар «100 Рентген»</title>
+  </head>
+  <body>
+    <header style="background-color: #daa922; text-align: center">
+      <h1>Ласкаво просимо до Бару 100 Рентген!</h1>
+    </header>
+
+    <nav style="text-align: center">
+      <a href="#home">Головна</a>
+      <a href="#reserve">Зарезервувати столик</a>
+      <a href="about.html">Про заклад</a>
+      <a href="#events">Події</a>
+      <a href="#menu">Меню</a>
+      <a href="#arena">Арена</a>
+    </nav>
+
+    <img width="500" src="bar.webp" alt="Фото ресторану" />
+
+    <div class="container" id="reserve" style="padding: 20px">
+      <h2>Зарезервувати столик</h2>
+      <form>
+        <label for="name">Ім'я:</label><br />
+        <input type="text" id="name" name="name" required /><br />
+        <label for="date">Дата:</label><br />
+        <input type="date" id="date" name="date" required /><br />
+        <label for="time">Час:</label><br />
+        <input type="time" id="time" name="time" required /><br />
+        <label for="people">Кількість людей:</label><br />
+        <input type="number" id="people" name="people" min="1" required /><br />
+        <button type="submit" class="btn">Зарезервувати</button>
+      </form>
+    </div>
+
+    <div class="container" id="events">
+      <h2>Події</h2>
+      <ul class="event-list">
+        <li>🎉 Вечір живої музики – П'ятниця, 19:00</li>
+        <li>🐗 Дегустація нової страви - Кабан в медовому соусі, 18:00</li>
+        <li>🍽️ Майстер-клас від шефа - як затушити Тушкана – Неділя, 17:00</li>
+      </ul>
+    </div>
+
+    <div class="container" id="menu">
+      <h2>Меню</h2>
+      <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+          <th>Блюдо</th>
+          <th>Ціна (грн)</th>
+        </tr>
+        <tr>
+          <td>🥗 Салат "Бюрерова пастка"</td>
+          <td>120</td>
+        </tr>
+        <tr>
+          <td>🍝 Паста "Турби Снорка"</td>
+          <td>180</td>
+        </tr>
+        <tr>
+          <td>🍖 Стейк з Плоті</td>
+          <td>350</td>
+        </tr>
+        <tr>
+          <td>🍰 Сирний пиріг</td>
+          <td>100</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="container" id="arena">
+      <h2>Арена</h2>
+      <p>Одна з головних розваг нашого ресторану – це наша АРЕНА.</p>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/fZ8MhW4OZb4"
+        title="Відео з арени"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <div class="container">
+      <h2>Графік роботи</h2>
+      <table>
+        <tr>
+          <th>День</th>
+          <th>Години роботи</th>
+        </tr>
+        <tr>
+          <td>Понеділок – П’ятниця</td>
+          <td>10:00 – 23:00</td>
+        </tr>
+        <tr>
+          <td>Субота – Неділя</td>
+          <td>12:00 – 02:00</td>
+        </tr>
+      </table>
+    </div>
+
+    <footer style="background-color: #daa922; text-align: center">
+      <p>&copy; 2025 Бар «100 Рентген». Всі права захищено.</p>
+    </footer>
+  </body>
+</html>
