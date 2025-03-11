@@ -2,6 +2,7 @@
   "name": "100-rads-bar",
   "version": "0.0.1",
   "description": "Official website for 100 Rads Bar",
+  "type": "module",
   "workspaces": [
     "client",
     "server",
@@ -10,8 +11,8 @@
   "scripts": {
     "docker:compose": "docker-compose up -d",
     "client:dev": "npm run dev --workspace=client",
-    "server:dev": "npm run start:dev --workspace=server",
-    "start": "concurrently 'npm:server:dev' 'npm:client:dev'",
+    "server:dev": "wait-on tcp:5433 && npm run start:dev --workspace=server",
+    "start": "concurrently 'npm:docker:compose' 'npm:server:dev' 'npm:client:dev'",
     "stop": "docker-compose down",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
