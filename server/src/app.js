@@ -1,15 +1,21 @@
 import express from 'express';
-import pool from './config/db.js';
+
+import tablesRoutes from './routes/tablesRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+
+import errorHandling from './middlewares/errorHandler.js';
 
 const app = express();
 
 const port = process.env.PORT || 3000;
 
-app.get('/tables', async (req, res) => {
-  const response = await pool.query('SELECT * FROM tables');
-  res.send(response.rows);
-});
+app.use(express.json());
+
+app.use('/api/tables', tablesRoutes);
+app.use('/api/users', userRoutes);
+
+app.use(errorHandling);
 
 app.listen(port, () => {
-  console.log(`ERunning on http://localhost:${port}`);
+  console.log(`🚀 Running on http://localhost:${port}`);
 });
