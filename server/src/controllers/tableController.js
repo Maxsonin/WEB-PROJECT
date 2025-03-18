@@ -1,8 +1,8 @@
-import { getAllTablesDb } from '../models/tableModel.js';
+import { getTablesDb } from '../models/tableModel.js';
 
-export const getAllTables = async (req, res, next) => {
+export const getTables = async (req, res, next) => {
   try {
-    const tables = await getAllTablesDb();
+    const tables = await getTablesDb();
     res.status(200).json(tables);
   } catch (error) {
     next(err);
