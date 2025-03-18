@@ -7,7 +7,7 @@ import {
   deleteReservation,
 } from '../controllers/reservationController.js';
 
-const router = express.Router({ mergeParams: true });
+const router = express.Router();
 
 router.get('/', getUserReservations);
 router.get('/:reservationId', getUserReservationById);

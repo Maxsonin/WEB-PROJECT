@@ -1,13 +1,35 @@
 import pool from '../config/db.js';
 
-export const getUserDb = async (user_id) => {
+export const getUserByIdDb = async (user_id) => {
   try {
     const result = await pool.query('SELECT * FROM users WHERE user_id = $1', [
       user_id,
     ]);
+
+    if (result.rowCount === 0) {
+      throw new Error('User not found');
+    }
+
     return result.rows[0];
   } catch (error) {
-    throw new Error(`Error retrieving user: ${error.message}`);
+    throw new Error(`Error retrieving user using id: ${error.message}`);
+  }
+};
+
+export const getUserByPhoneNumberDb = async (phone_number) => {
+  try {
+    const result = await pool.query(
+      'SELECT * FROM users WHERE phone_number = $1',
+      [phone_number]
+    );
+
+    if (result.rowCount === 0) {
+      throw new Error('User not found');
+    }
+
+    return result.rows[0];
+  } catch (error) {
+    throw new Error(`Error retrieving user by phone number: ${error.message}`);
   }
 };
 
