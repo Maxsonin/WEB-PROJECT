@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+  gap: 1rem;
+  background-color: #353535;
+  padding: 1rem;
+  position: sticky;
+  z-index: 100;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: lightgray;
+}

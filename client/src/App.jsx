@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { HomePage } from './pages/HomePage';
+import { ArenaPage } from './pages/ArenaPage';
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    fetch('http://localhost:3000/api')
-      .then((response) => response.json())
-      .then((data) => setMessage(data.message))
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
-
   return (
-    <>
-      <p>{message}</p>
-    </>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/arena" element={<ArenaPage />} />
+    </Routes>
   );
 }
 

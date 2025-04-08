@@ -29,7 +29,9 @@ export const getUserByPhoneNumberDb = async (phone_number) => {
 
     return result.rows[0];
   } catch (error) {
-    throw new Error(`Error retrieving user by phone number: ${error.message}`);
+    throw new Error(
+      `Error retrieving user by phone number(${phone_number}): ${error.message}`
+    );
   }
 };
 

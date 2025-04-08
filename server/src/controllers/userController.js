@@ -18,6 +18,18 @@ const createJwtToken = (user) => {
   );
 };
 
+export const checkUserAuth = async (req, res, next) => {
+  try {
+    const user = await getUserByIdDb(req.user.user_id);
+    return res.status(200).json({
+      status: true,
+      user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const loginUser = async (req, res, next) => {
   const { phone_number } = req.body;
   try {
@@ -31,6 +43,20 @@ export const loginUser = async (req, res, next) => {
     console.log(token);
 
     return res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const logoutUser = async (req, res, next) => {
+  try {
+    res.clearCookie('token', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+    });
+
+    return res.status(200).json({ message: 'Successfully logged out' });
   } catch (error) {
     next(error);
   }
