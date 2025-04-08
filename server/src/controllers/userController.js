@@ -20,11 +20,12 @@ const createJwtToken = (user) => {
 
 export const checkUserAuth = async (req, res, next) => {
   try {
+    if (!req.user || !req.user.user_id) {
+      return res.sendStatus(401);
+    }
+
     const user = await getUserByIdDb(req.user.user_id);
-    return res.status(200).json({
-      status: true,
-      user,
-    });
+    return res.status(200).json(user);
   } catch (error) {
     next(error);
   }

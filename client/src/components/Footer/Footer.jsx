@@ -1,9 +1,10 @@
-import React from 'react';
 import styles from './Footer.module.css';
+import Button from '../UI/Button/Button';
+import InputField from '../UI/InputField/InputField';
 
 export function Footer() {
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.column}>
           <h3>Про нас</h3>
@@ -45,13 +46,13 @@ export function Footer() {
           <h3>Контакти</h3>
           <ul>
             <li>
-              <a href="#">Email: email@example.com</a>
+              <a href="#">Email: 100rads.bar@gmail.com</a>
             </li>
             <li>
-              <a href="#">Телефон: +123 456 789</a>
+              <a href="#">Телефон: +132 256 839</a>
             </li>
             <li>
-              <a href="#">Адреса: Вулиця, Місто</a>
+              <a href="#">Адреса: Барська 5, Чорнобиль</a>
             </li>
           </ul>
         </div>
@@ -60,8 +61,8 @@ export function Footer() {
           <h3>Підписка</h3>
           <p>Підписуйтеся на нашу розсилку для отримання новин та акцій!</p>
           <form>
-            <input type="email" placeholder="Введіть ваш email" />
-            <button type="submit">Підписатися</button>
+            <InputField type="email" placeholder="Введіть ваш email" />
+            <Button type="submit">Підписатися</Button>
           </form>
         </div>
       </div>
@@ -69,6 +70,6 @@ export function Footer() {
       <div className={styles.footerBottom}>
         <p>© 2025 Ваш ресторан. Усі права захищено.</p>
       </div>
-    </div>
+    </footer>
   );
 }

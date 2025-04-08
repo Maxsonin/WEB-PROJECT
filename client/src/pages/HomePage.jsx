@@ -3,14 +3,11 @@ import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import layer1 from '../assets/backgroundImgs/layer1.jpg';
 import layer2 from '../assets/backgroundImgs/layer2.png';
 import { Footer } from '../components/Footer/Footer';
-import { NavBar } from '../components/NavBar/NavBar';
 import ContainerElement from '../components/ContainerElement/ContainerElement';
 import axios from 'axios';
-import LoginButton from '../components/LoginButton/LoginButton';
-import Modal from '../components/Modal/Modal';
+import Modal from '../components/UI/Modal/Modal';
 
 export function HomePage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(null); // null = not loaded yet
   const [reservations, setReservations] = useState([]);
   const [editModel, setEditModel] = useState(false);
   const [editModalData, setEditModalData] = useState({
@@ -25,48 +22,34 @@ export function HomePage() {
     numberOfVisitors: '',
   });
   const [reservationToEdit, setReservationToEdit] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  function formatDateTimeLocal(isoString) {
-    const date = new Date(isoString);
-    const offset = date.getTimezoneOffset();
-    const localDate = new Date(date.getTime() - offset * 60000);
-    return localDate.toISOString().slice(0, 16);
-  }
-
-  const checkAuthAndLoadReservations = async () => {
+  const fetchReservations = async () => {
     try {
-      const authRes = await axios.get(
-        'http://localhost:8080/api/auth/check-auth',
-        {
-          withCredentials: true,
-        }
-      );
-      if (authRes.status === 200) {
-        setIsAuthenticated(true);
-        const reservationRes = await axios.get(
-          'http://localhost:8080/api/reservations',
-          {
-            withCredentials: true,
-          }
-        );
-        setReservations(reservationRes.data);
-      } else {
-        setIsAuthenticated(false);
-      }
+      const res = await axios.get('http://localhost:8080/api/reservations', {
+        withCredentials: true,
+      });
+      setReservations(res.data);
     } catch (error) {
-      setIsAuthenticated(false);
+      console.error('Error fetching reservations:', error);
     }
   };
+
+  useEffect(() => {
+    fetchReservations();
+  }, []);
 
   const removeReservation = async (reservationId) => {
     try {
       await axios.delete(
         `http://localhost:8080/api/reservations/${reservationId}`,
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
-      checkAuthAndLoadReservations();
+      setReservations((prevReservations) =>
+        prevReservations.filter(
+          (reservation) => reservation.reservation_id !== reservationId
+        )
+      );
     } catch (error) {
       console.error('Error removing reservation:', error);
     }
@@ -74,7 +57,6 @@ export function HomePage() {
 
   const updateReservation = async (e) => {
     e.preventDefault();
-
     const dataToSend = {
       start_time: editModalData.datetime,
       table_id: editModalData.table,
@@ -82,13 +64,19 @@ export function HomePage() {
     };
 
     try {
-      await axios.put(
+      const res = await axios.put(
         `http://localhost:8080/api/reservations/${reservationToEdit.reservation_id}`,
         dataToSend,
         { withCredentials: true }
       );
       setEditModel(false);
-      checkAuthAndLoadReservations();
+      setReservations((prevReservations) =>
+        prevReservations.map((reservation) =>
+          reservation.reservation_id === reservationToEdit.reservation_id
+            ? res.data
+            : reservation
+        )
+      );
     } catch (error) {
       console.error('Error updating reservation:', error);
     }
@@ -96,7 +84,6 @@ export function HomePage() {
 
   const addReservation = async (e) => {
     e.preventDefault();
-
     const dataToSend = {
       start_time: addModalData.datetime,
       table_id: addModalData.table,
@@ -104,20 +91,24 @@ export function HomePage() {
     };
 
     try {
-      axios.post('http://localhost:8080/api/reservations', dataToSend, {
-        withCredentials: true,
-      });
-
+      const res = await axios.post(
+        'http://localhost:8080/api/reservations',
+        dataToSend,
+        { withCredentials: true }
+      );
       setAddModal(false);
-      checkAuthAndLoadReservations();
-    } catch {
+      setReservations((prevReservations) => [...prevReservations, res.data]);
+    } catch (error) {
       console.error('Error adding reservation:', error);
     }
   };
 
-  useEffect(() => {
-    checkAuthAndLoadReservations();
-  }, []);
+  const formatDateTimeLocal = (isoString) => {
+    const date = new Date(isoString);
+    const offset = date.getTimezoneOffset();
+    const localDate = new Date(date.getTime() - offset * 60000);
+    return localDate.toISOString().slice(0, 16);
+  };
 
   useEffect(() => {
     if (reservationToEdit) {
@@ -131,10 +122,6 @@ export function HomePage() {
 
   return (
     <>
-      <NavBar
-        isAuthenticated={isAuthenticated}
-        onLoginSuccess={checkAuthAndLoadReservations}
-      />
       <Parallax pages={2.35} style={{ top: '0', left: '0' }}>
         <ParallaxLayer
           offset={0}
@@ -152,23 +139,40 @@ export function HomePage() {
             backgroundSize: 'cover',
           }}
         ></ParallaxLayer>
+        <ParallaxLayer offset={0} speed={0.6}>
+          <div
+            style={{
+              position: 'absolute',
+              top: '40%',
+              left: '70%',
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              borderRadius: '10px',
+              padding: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'column',
+            }}
+          >
+            <h1 style={{ marginBottom: '0px' }}>Вітаємо у</h1>
+            <p
+              style={{
+                color: '#ee931b',
+                fontSize: '3rem',
+                margin: '5px ',
+                fontWeight: 'bold',
+              }}
+            >
+              «БАР 100 РЕНТГЕН»
+            </p>
+            <h2 style={{ marginTop: '0px' }}>Проходь не затримуйся!</h2>
+          </div>
+        </ParallaxLayer>
 
         <ParallaxLayer offset={1} speed={0}>
           <ContainerElement>
             <h1>Ваші заброньовані столики</h1>
             {isAuthenticated === null && <h2>Завантаження...</h2>}
-            {isAuthenticated === false && (
-              <LoginButton
-                onLoginSuccess={() => {
-                  setIsAuthenticated(true);
-                  axios
-                    .get('http://localhost:8080/api/reservations', {
-                      withCredentials: true,
-                    })
-                    .then((res) => setReservations(res.data));
-                }}
-              />
-            )}
             {isAuthenticated === true && (
               <>
                 <ul>
@@ -218,7 +222,7 @@ export function HomePage() {
             {editModel && (
               <Modal>
                 <form onSubmit={updateReservation}>
-                  <label for="datetime">Обрати дату та час:</label>
+                  <label htmlFor="datetime">Обрати дату та час:</label>
                   <input
                     type="datetime-local"
                     id="datetime"
@@ -231,8 +235,7 @@ export function HomePage() {
                       })
                     }
                   />
-
-                  <label for="table">Обрати столик:</label>
+                  <label htmlFor="table">Обрати столик:</label>
                   <input
                     type="number"
                     id="table"
@@ -244,9 +247,10 @@ export function HomePage() {
                         table: e.target.value,
                       })
                     }
-                  ></input>
-
-                  <label for="numberOfVisitors">Кількість відвідувачів:</label>
+                  />
+                  <label htmlFor="numberOfVisitors">
+                    Кількість відвідувачів:
+                  </label>
                   <input
                     type="number"
                     id="numberOfVisitors"
@@ -258,8 +262,7 @@ export function HomePage() {
                         numberOfVisitors: e.target.value,
                       })
                     }
-                  ></input>
-
+                  />
                   <button type="submit">Підтвердити</button>
                 </form>
               </Modal>
@@ -267,7 +270,7 @@ export function HomePage() {
             {addModal && (
               <Modal>
                 <form onSubmit={addReservation}>
-                  <label for="datetime">Обрати дату та час:</label>
+                  <label htmlFor="datetime">Обрати дату та час:</label>
                   <input
                     type="datetime-local"
                     id="datetime"
@@ -280,8 +283,7 @@ export function HomePage() {
                       })
                     }
                   />
-
-                  <label for="table">Обрати столик:</label>
+                  <label htmlFor="table">Обрати столик:</label>
                   <input
                     type="number"
                     id="table"
@@ -293,9 +295,10 @@ export function HomePage() {
                         table: e.target.value,
                       })
                     }
-                  ></input>
-
-                  <label for="numberOfVisitors">Кількість відвідувачів:</label>
+                  />
+                  <label htmlFor="numberOfVisitors">
+                    Кількість відвідувачів:
+                  </label>
                   <input
                     type="number"
                     id="numberOfVisitors"
@@ -307,8 +310,7 @@ export function HomePage() {
                         numberOfVisitors: e.target.value,
                       })
                     }
-                  ></input>
-
+                  />
                   <button type="submit">Додати Резервацію</button>
                 </form>
               </Modal>

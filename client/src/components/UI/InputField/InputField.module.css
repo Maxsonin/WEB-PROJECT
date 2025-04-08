@@ -1,0 +1,14 @@
+@import '../../../global.css';
+
+.input {
+  outline: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  color: var(--elements-text-color);
+  font-size: 1.1rem;
+  margin: 0 0 10px 0;
+}
+
+.input:focus {
+  border: 2px solid var(--elements-hover-color);
+}

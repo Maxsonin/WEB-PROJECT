@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get('/check-auth', cookieJwtAuth, checkUserAuth);
 router.post('/login', loginUser);
-router.post('/logout', cookieJwtAuth, logoutUser);
+router.delete('/logout', cookieJwtAuth, logoutUser);
 router.post('/', createUser);
 
 export default router;

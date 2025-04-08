@@ -1,19 +1,25 @@
+@import '../../global.css';
+
 .nav {
   display: flex;
-  gap: 1rem;
-  background-color: #353535;
-  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+  padding: 1rem 3rem;
   position: sticky;
   z-index: 100;
 }
 
 .link {
-  color: white;
+  color: var(--main-text-color);
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
+  margin-right: 1.5rem;
+  font-size: large;
+  transition: color 0.3s;
 }
 
 .link:hover {
-  color: lightgray;
+  color: var(--elements-hover-color);
 }

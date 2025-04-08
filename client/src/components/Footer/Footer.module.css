@@ -1,8 +1,8 @@
+@import '../../global.css';
+
 .footer {
-  background: #333333;
-  color: #fff;
+  background: var(--primary-color);
   padding: 40px 0;
-  font-family: 'Arial', sans-serif;
 }
 
 .container {
@@ -14,15 +14,14 @@
 }
 
 .column {
-  flex: 1;
-  margin: 20px 20px;
+  padding: 20px 20px;
 }
 
 .column h3 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 25px;
   font-weight: bold;
-  color: #da8d29;
+  color: var(--elements-color);
 }
 
 .column ul {
@@ -31,24 +30,25 @@
 }
 
 .column ul li {
-  margin: 15px 0;
+  margin: 25px 0;
+  font-size: 1.1rem;
 }
 
 .column a {
-  color: #fff;
+  color: var(--main-text-color);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .column a:hover {
-  color: #da8d29;
+  color: var(--elements-hover-color);
 }
 
 .footerBottom {
   text-align: center;
   padding: 20px 0;
-  background: rgba(0, 0, 0, 0.5);
-  font-size: 1.2rem;
+  background: var(--transparent-element-color);
+  font-size: 1.3rem;
 }
 
 .footerBottom p {
