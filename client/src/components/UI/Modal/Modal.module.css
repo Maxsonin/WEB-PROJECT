@@ -20,5 +20,6 @@
   min-width: 300px;
   display: flex;
   flex-direction: column;
+  font-size: large;
   gap: 1rem;
 }

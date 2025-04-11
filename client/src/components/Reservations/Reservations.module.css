@@ -1,0 +1,89 @@
+@import '../../global.css';
+
+.ul {
+  display: grid;
+  padding: 0;
+  list-style: none;
+  gap: 1rem;
+}
+
+.table {
+  border: none;
+}
+
+.table td:nth-child(4),
+.table th:nth-child(4) {
+  visibility: hidden;
+  z-index: -1;
+  transform: translateX(-250px);
+  transition: transform 0.3s ease, visibility 0.3s;
+}
+.table th:nth-child(4) {
+  background-color: var(--elements-color);
+}
+.table td:nth-child(4) {
+  background-color: var(--primary-color);
+}
+
+.table:hover td:nth-child(4),
+.table:hover th:nth-child(4) {
+  visibility: visible;
+  transform: translateX(0);
+  z-index: 0;
+  transition: z-index 1s, background-color 0.3s, transform 0.3s ease;
+}
+
+.table td:nth-child(4),
+.table th:nth-child(4) {
+  position: relative;
+  transform: translateX(-250px);
+}
+
+.thead {
+  background-color: var(--elements-color);
+  color: var(--elements-text-color);
+}
+
+.tbody {
+  background-color: var(--primary-color);
+}
+
+.button {
+  color: var(--main-text-color);
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin: 4px;
+}
+
+.edit {
+  background-color: green;
+}
+
+.edit:hover {
+  background-color: rgb(0, 209, 0);
+  transition: background-color 0.3s;
+}
+
+.remove {
+  background-color: rgb(170, 0, 0);
+}
+
+.remove:hover {
+  background-color: rgb(255, 0, 0);
+  transition: background-color 0.3s;
+}
+
+/* Modal Form Styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.label {
+  margin-bottom: 0rem;
+}

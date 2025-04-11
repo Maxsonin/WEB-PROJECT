@@ -12,13 +12,13 @@ export function NavBar() {
   const [showModal, setShowModal] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     window.location.href = '/';
   };
 
-  const handleLogin = () => {
-    login({ phone_number: phoneNumber });
+  const handleLogin = async () => {
+    await login({ phone_number: phoneNumber });
     setShowModal(false);
     window.location.href = '/';
   };
