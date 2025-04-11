@@ -36,12 +36,6 @@ export function NavBar() {
           <Link to="/about" className={styles.link}>
             Про Нас
           </Link>
-          <a href="#events" className={styles.link}>
-            Події
-          </a>
-          <a href="#menu" className={styles.link}>
-            Меню
-          </a>
         </div>
         <div>
           {isLoading ? (

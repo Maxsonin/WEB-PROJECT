@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import layer1 from '../assets/backgroundImgs/layer1.jpg';
 import layer2 from '../assets/backgroundImgs/layer2.png';
@@ -22,6 +23,8 @@ export function HomePage() {
 
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
+
+  const navigate = useNavigate();
 
   const fetchReservations = async () => {
     try {
@@ -192,7 +195,9 @@ export function HomePage() {
                 justifyContent: 'center',
               }}
             >
-              <Button>Дізнатися більше</Button>
+              <Button onClick={() => navigate('/arena')}>
+                Дізнатися більше
+              </Button>
             </div>
           </div>
         </ParallaxSection>
