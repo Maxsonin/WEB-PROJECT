@@ -19,7 +19,7 @@ export function ArenaPage() {
       <div className={`${styles.overlay} ${styles.fullscreen}`}></div>
       <div className={`${styles.content} ${styles.fullscreen}`}>
         <h1>
-          Вітаємо на <spam className={styles.span}>Арені</spam>
+          Вітаємо на <span className={styles.span}>Арені</span>
         </h1>
         <p>
           Як випливає з назви, це місце, де сталкери борються один з одним за

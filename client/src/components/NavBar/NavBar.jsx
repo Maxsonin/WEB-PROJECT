@@ -35,13 +35,25 @@ export function NavBar() {
           ☰
         </button>
         <div className={styles.links}>
-          <Link to="/" className={styles.link}>
+          <Link
+            to="/"
+            className={styles.link}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             Головна
           </Link>
-          <Link to="/arena" className={styles.link}>
+          <Link
+            to="/arena"
+            className={styles.link}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             Арена
           </Link>
-          <Link to="/about" className={styles.link}>
+          <Link
+            to="/about"
+            className={styles.link}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             Про Нас
           </Link>
         </div>

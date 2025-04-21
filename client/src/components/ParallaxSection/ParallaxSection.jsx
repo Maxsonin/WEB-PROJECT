@@ -14,13 +14,16 @@ function ParallaxSection({
       <ParallaxLayer
         offset={offset}
         speed={BgSpeedValue}
-        style={{ zIndex: zValue }}
+        style={{
+          zIndex: zValue,
+        }}
       >
         <div
           style={{
             width: '100%',
             backgroundImage: `url(${backgroundImg})`,
             backgroundSize: 'cover',
+            backgroundPosition: 'center',
             ...customStyles,
           }}
         >

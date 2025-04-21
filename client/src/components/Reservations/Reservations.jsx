@@ -161,7 +161,9 @@ function Reservations({ reservations, setReservations }) {
             </li>
           ))}
         </ol>
-        <Button onClick={() => setAddModal(true)}>Зробити резервацію</Button>
+        {reservations.length < 3 && (
+          <Button onClick={() => setAddModal(true)}>Зробити резервацію</Button>
+        )}
       </>
 
       {editModel && (

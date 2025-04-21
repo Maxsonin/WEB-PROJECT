@@ -8,7 +8,7 @@
 .container {
   display: flex;
   padding: 0 20px;
-  max-width: 50%;
+  width: 50%;
   margin: 0 auto;
   justify-content: space-between;
 }
@@ -22,22 +22,24 @@
   margin-bottom: 25px;
   font-weight: bold;
   color: var(--elements-color);
+  font-size: clamp(2rem, 1vw, 3rem);
 }
 
 .column ul {
   list-style: none;
   padding: 0;
+  font-size: clamp(1rem, 1vw, 1.1rem);
 }
 
 .column ul li {
   margin: 25px 0;
-  font-size: 1.1rem;
 }
 
 .column a {
   color: var(--main-text-color);
   text-decoration: none;
   transition: color 0.3s ease;
+  font-size: clamp(1rem, 1vw, 1.1rem);
 }
 
 .column a:hover {
@@ -53,4 +55,28 @@
 
 .footerBottom p {
   margin: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 90%;
+  }
+
+  .footer {
+    transform: translateY(-50px);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    max-width: 90%;
+  }
+
+  .column {
+    display: none;
+  }
+
+  .footerBottom {
+    transform: translateY(200px);
+  }
 }

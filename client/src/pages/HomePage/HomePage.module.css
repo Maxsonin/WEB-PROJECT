@@ -1,0 +1,96 @@
+@import '../../global.css';
+
+.welcomeBox {
+  position: absolute;
+  top: 40%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.welcomeBox h1 {
+  font-size: clamp(2.3rem, 2vw, 4rem);
+  margin: 0px;
+}
+
+.welcomeBox span {
+  color: var(--elements-color);
+  font-size: clamp(1.7rem, 1vw, 3rem);
+  font-weight: 900;
+}
+
+.welcomeBox p {
+  margin: 0px;
+  margin-top: 0.5rem;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+}
+
+.rulesList {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  font-size: clamp(1rem, vw, 2rem);
+  color: var(--note-color);
+}
+
+.arenaQuote {
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid var(--elements-color);
+  font-style: italic;
+  font-size: 1.3rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  color: #ddd;
+  margin-bottom: 0px;
+  font-size: clamp(1.2rem, 1vw, 2.5rem);
+}
+
+.arenaDesc {
+  font-size: 1.2rem;
+}
+
+.menuWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  background-color: var(--transparent-element-color);
+  padding: 30px;
+  padding-top: 10px;
+  border-radius: 20px;
+  transform: translateY(-15%);
+  font-size: clamp(rem, 1vw, 2.5rem);
+}
+
+.menuTable th {
+  background-color: var(--elements-color);
+  color: var(--secondary-color);
+}
+
+.menuTable tbody {
+  background-color: var(--primary-color);
+}
+
+@media screen and (max-width: 1200px) {
+  .welcomeBox {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .arenaDesc {
+    display: none;
+  }
+
+  .arenaQuote {
+    margin-bottom: 1rem;
+  }
+}
