@@ -9,6 +9,8 @@ import InputField from '../UI/InputField/InputField';
 export function NavBar() {
   const { isAuthenticated, isLoading, login, logout } = useAuth();
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const [showModal, setShowModal] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
 
@@ -25,8 +27,14 @@ export function NavBar() {
 
   return (
     <>
-      <nav className={styles.nav}>
-        <div>
+      <nav className={`${styles.nav} ${menuOpen ? styles.responsive : ''}`}>
+        <button
+          className={styles.menuToggle}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
+        <div className={styles.links}>
           <Link to="/" className={styles.link}>
             Головна
           </Link>

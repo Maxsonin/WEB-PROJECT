@@ -1,5 +1,3 @@
-@import '../../global.css';
-
 .nav {
   display: flex;
   justify-content: space-between;
@@ -22,4 +20,48 @@
 
 .link:hover {
   color: var(--elements-hover-color);
+}
+
+.menuToggle {
+  display: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: var(--main-text-color);
+  font-size: 2.4rem;
+  padding: 0px 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .nav {
+    padding: 1rem 1rem;
+  }
+
+  .links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--primary-color);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    border-top: 1px solid var(--transparent-element-color);
+    border-bottom: 1px solid var(--transparent-element-color);
+    z-index: 99;
+  }
+
+  .nav.responsive .links {
+    display: flex;
+  }
+
+  .menuToggle {
+    display: block;
+  }
+
+  .link {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
 }

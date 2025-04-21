@@ -27,17 +27,18 @@
 
 .span {
   color: var(--elements-color);
-  font-size: 5rem;
+  font-size: clamp(3rem, 8vw, 5rem);
 }
 
 .content h1 {
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 5vw, 3rem);
   margin-bottom: 1rem;
 }
 
 .content p {
   text-align: center;
-  width: 50%;
+  width: 87%;
+  max-width: 700px;
   margin-top: 0;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
 }
