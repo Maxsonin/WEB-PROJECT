@@ -3,10 +3,10 @@ import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import layer1 from '../../assets/backgroundImgs/layer1.jpg';
-import layer2 from '../../assets/backgroundImgs/layer2.png';
-import arena from '../../assets/backgroundImgs/arena.png';
-import food from '../../assets/backgroundImgs/food.jpg';
+import layer1 from '../../assets/backgroundImgs/layer1.webp';
+import layer2 from '../../assets/backgroundImgs/layer2.webp';
+import arena from '../../assets/backgroundImgs/arena.webp';
+import food from '../../assets/backgroundImgs/food.webp';
 
 import styles from './HomePage.module.css';
 
@@ -18,7 +18,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import InputField from '../../components/UI/InputField/InputField';
 import Reservations from '../../components/Reservations/Reservations';
 
-export function HomePage() {
+const HomePage = () => {
   const { isAuthenticated, isLoading, login } = useAuth();
 
   const [reservations, setReservations] = useState([]);
@@ -297,4 +297,6 @@ export function HomePage() {
       )}
     </>
   );
-}
+};
+
+export default HomePage;

@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import reservationRoutes from './routes/reservationsRoutes.js';
 
 import cookieParser from 'cookie-parser';
+import compression from 'compression';
 
 import errorHandling from './middlewares/errorHandler.js';
 import cookieJwtAuth from './middlewares/cookieJwtAuth.js';
@@ -16,6 +17,7 @@ const app = express();
 
 const port = process.env.PORT || 8080;
 
+app.use(compression());
 app.use(express.json());
 app.use(cookieParser());
 app.use(

@@ -1,8 +1,8 @@
-import bar from '../../assets/imgs/bar.png';
+import bar from '../../assets/imgs/bar.webp';
 import styles from './AboutPage.module.css';
 import { Footer } from '../../components/Footer/Footer';
 
-export const AboutPage = () => {
+const AboutPage = () => {
   return (
     <>
       <div className={styles.container}>
@@ -47,3 +47,5 @@ export const AboutPage = () => {
     </>
   );
 };
+
+export default AboutPage;

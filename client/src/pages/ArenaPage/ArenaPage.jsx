@@ -3,7 +3,7 @@ import Button from '../../components/UI/Button/Button';
 import arena from '../../assets/videos/arena.mp4';
 import styles from './ArenaPage.module.css';
 
-export function ArenaPage() {
+const ArenaPage = () => {
   return (
     <>
       <video
@@ -29,4 +29,6 @@ export function ArenaPage() {
       </div>
     </>
   );
-}
+};
+
+export default ArenaPage;
