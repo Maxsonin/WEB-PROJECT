@@ -13,9 +13,10 @@
     "docker:down": "docker-compose down",
     "client:dev": "npm run dev --workspace=client",
     "client:build": "npm run build --workspace=client",
+    "client:preview": "npm run preview --workspace=client",
     "server:dev": "wait-on tcp:5433 && npm run start:dev --workspace=server",
     "start:dev": "concurrently 'npm run docker:up' 'npm run server:dev' 'npm run client:dev'",
-    "start:prod": "npm run docker:up && npm run client:build && npm run server:dev",
+    "start:prod": "npm run docker:up && concurrently \"npm run client:preview\" \"npm run server:dev\"",
     "stop": "npm run docker:down",
     "clean": "rm -rf dist"
   },
